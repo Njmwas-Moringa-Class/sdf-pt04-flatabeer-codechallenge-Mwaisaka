@@ -1,16 +1,14 @@
 // Code here
-document.addEventListener('DOMContentLoaded',() => {
-
-    const baseUrl='http://localhost:3000';
+const baseUrl='http://localhost:3000';
 
     const beerTitle = document.getElementById('beer-name');
     const beerImage = document.getElementById('beer-image');
     const beerDescription = document.getElementById('beer-description');
     const reviewList = document.getElementById('review-list');
 
-    //See the full details of the firt beer (i.e. its name, image, description, and reviews) when the page loads.
-    //Fetch the data of the beer from the server.
-   
+//The below function fetches full details of the firt beer (i.e. its name, image, description, and reviews) from the server when the page loads.
+
+function fetchBeers(){
     fetch(`${baseUrl}/beers`)
     .then(response =>response.json())
     .then((beers) => {
@@ -22,8 +20,13 @@ document.addEventListener('DOMContentLoaded',() => {
         reviewList.textContent = beers[0].reviews;
     })
     .catch(error=>console.error("Error in fetching beer details",error));
+   }
 
-    //The below code diplays the list of beers on the 'nav'
+document.addEventListener('DOMContentLoaded',() => {
+
+   fetchBeers();
+    
+    //The below code diplays the list of beers on the 'nav' after fetching from the server
     fetch(`${baseUrl}/beers`)
     .then(res=>res.json())
     .then((data)=>{
@@ -36,17 +39,18 @@ document.addEventListener('DOMContentLoaded',() => {
         listItem.textContent=beer.name;
         beerList.appendChild(listItem);
 
-        listItem.addEventListener("submit",()=>{
-            event.preventDefault();
-            const beerName = document.getElementById("beer-name");
-            beerName.textContent=beer.name;
-            beerImage = beer.image_url;
+    });
 
-            const beerDescription = document.getElementById("beer-description");
-            beerDescription.textContent = beer.description;
-            reviewList.textContent = beer.reviews;
-            reviewList.textContent = bear[0].reviews;
-        });
+    listItem.addEventListener("submit",()=>{
+        event.preventDefault();
+        const beerName = document.getElementById("beer-name");
+        beerName.textContent=beer.name;
+        beerImage = beer.image_url;
+
+        const beerDescription = document.getElementById("beer-description");
+        beerDescription.textContent = beer.description;
+        reviewList.textContent = beer.reviews;
+        reviewList.textContent = bear[0].reviews;
     });
 });
 });
