@@ -5,6 +5,7 @@ const baseUrl='http://localhost:3000';
     const beerImage = document.getElementById('beer-image');
     const beerDescription = document.getElementById('beer-description');
     const reviewList = document.getElementById('review-list');
+    const beerList = document.getElementById("beer-list");
 
 //The below function fetches full details of the firt beer (i.e. its name, image, description, and reviews) from the server when the page loads.
 
@@ -25,18 +26,17 @@ function fetchBeers(){
 function addBeersList(){
     fetch(`${baseUrl}/beers`)
     .then(res=>res.json())
-    .then((data)=>{
-        
+    .then(data=>{
+        beerList.innerHTML = '';
         data.forEach(beer=>{
-        
-        const beerList = document.getElementById("beer-list");
+                
         const listItem = document.createElement("li");
-              
         listItem.textContent=beer.name;
+        listItem.addEventListener('click', () => fetchBeerDetails(beer.id));
         beerList.appendChild(listItem);
-
     });
-   });
+   })
+   .catch(error => console.error('Error fetching beer list:', error));
 }
 
 document.addEventListener('DOMContentLoaded',() => {
