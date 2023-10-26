@@ -22,7 +22,7 @@ function fetchBeers(){
     .catch(error=>console.error("Error in fetching beer details",error));
    }
 //The below function diplays the list of beers on the 'nav' after fetching from the server
-   function addBeersList(){
+function addBeersList(){
     fetch(`${baseUrl}/beers`)
     .then(res=>res.json())
     .then((data)=>{
