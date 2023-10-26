@@ -7,6 +7,7 @@ const baseUrl='http://localhost:3000';
     const reviewList = document.getElementById('review-list');
     const beerList = document.getElementById("beer-list");
 
+  
 //The below function fetches full details of the firt beer (i.e. its name, image, description, and reviews) from the server when the page loads.
 
 function fetchBeers(){
@@ -44,7 +45,8 @@ document.addEventListener('DOMContentLoaded',() => {
    fetchBeers();
    addBeersList(); 
 
-    listItem.addEventListener("submit",()=>{
+   
+    listItem.addEventListener("submit",(event)=>{
         event.preventDefault();
         const beerName = document.getElementById("beer-name");
         beerName.textContent=beer.name;
