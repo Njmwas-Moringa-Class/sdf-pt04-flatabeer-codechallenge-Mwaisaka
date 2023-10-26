@@ -21,12 +21,8 @@ function fetchBeers(){
     })
     .catch(error=>console.error("Error in fetching beer details",error));
    }
-
-document.addEventListener('DOMContentLoaded',() => {
-
-   fetchBeers();
-    
-    //The below code diplays the list of beers on the 'nav' after fetching from the server
+//The below function diplays the list of beers on the 'nav' after fetching from the server
+   function addBeersList(){
     fetch(`${baseUrl}/beers`)
     .then(res=>res.json())
     .then((data)=>{
@@ -40,6 +36,13 @@ document.addEventListener('DOMContentLoaded',() => {
         beerList.appendChild(listItem);
 
     });
+   });
+}
+
+document.addEventListener('DOMContentLoaded',() => {
+
+   fetchBeers();
+   addBeersList(); 
 
     listItem.addEventListener("submit",()=>{
         event.preventDefault();
@@ -52,5 +55,4 @@ document.addEventListener('DOMContentLoaded',() => {
         reviewList.textContent = beer.reviews;
         reviewList.textContent = bear[0].reviews;
     });
-});
 });
