@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded',() => {
         beerImage.src = beers[0].image_url;
         beerDescription.textContent = beers[0].description;
         reviewList.textContent = beers[0].reviews;
-    });
+    })
+    .catch(error=>console.error("Error in fetching beer details",error));
 
     //The below code diplays the list of beers on the 'nav'
     fetch(`${baseUrl}/beers`)
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded',() => {
         beerList.appendChild(listItem);
 
         listItem.addEventListener("submit",()=>{
+            event.preventDefault();
             const beerName = document.getElementById("beer-name");
             beerName.textContent=beer.name;
             beerImage = beer.image_url;
