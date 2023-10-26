@@ -21,15 +21,16 @@ document.addEventListener('DOMContentLoaded',() => {
         beerDescription.textContent = beers[0].description;
         reviewList.textContent = beers[0].reviews;
     });
+
+    //The below code diplays the list of beers on the 'nav'
     fetch(baseUrl)
     .then(res=>res.json())
     .then((data)=>{
         data.forEach(beer=>{
-        //listItem="";
+        
         const beerList = document.getElementById("beer-list");
         const listItem = document.createElement("li");
-        //const listItem = document.querySelectorAll("li>ul");
-        
+                
         listItem.textContent=beer.name;
         beerList.appendChild(listItem);
     });
