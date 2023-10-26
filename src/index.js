@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded',() => {
     const beerDescription = document.getElementById('beer-description');
     const reviewList = document.getElementById('review-list');
 
-    const listItem = document.createElement("li");
-
     //See the full details of the firt beer (i.e. its name, image, description, and reviews) when the page loads.
     //Fetch the data of the beer from the server.
    
@@ -28,6 +26,7 @@ document.addEventListener('DOMContentLoaded',() => {
     fetch(`${baseUrl}/beers`)
     .then(res=>res.json())
     .then((data)=>{
+        
         data.forEach(beer=>{
         
         const beerList = document.getElementById("beer-list");
@@ -35,6 +34,17 @@ document.addEventListener('DOMContentLoaded',() => {
               
         listItem.textContent=beer.name;
         beerList.appendChild(listItem);
+
+        listItem.addEventListener("submit",()=>{
+            const beerName = document.getElementById("beer-name");
+            beerName.textContent=beer.name;
+            beerImage = beer.image_url;
+
+            const beerDescription = document.getElementById("beer-description");
+            beerDescription.textContent = beer.description;
+            reviewList.textContent = beer.reviews;
+            reviewList.textContent = bear[0].reviews;
+        });
     });
 });
 });
