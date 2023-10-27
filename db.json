@@ -3,10 +3,11 @@
     {
       "id": 1,
       "name": "Oh So Flattening",
-      "description": "Ncie",
+      "description": "Nice one",
       "image_url": "https://i.ibb.co/wQ4G0w1/flatiron-brew.png",
       "reviews": [
-        "Favorite"
+        "Tasty",
+        "Nice"
       ]
     },
     {
